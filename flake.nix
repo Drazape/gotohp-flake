@@ -16,7 +16,7 @@
 			perSystem = { config, self', inputs', pkgs, system, ... }: {
 				packages = let pkgName = "gotohp"; in {
 					default = self'.packages.${pkgName};
-					${pkgName} = pkgs.stdenv.mkDerivation {
+					${pkgName} = pkgs.stdenvNoCC.mkDerivation {
 						name = pkgName;
 						src = inputs.${pkgName};
 
