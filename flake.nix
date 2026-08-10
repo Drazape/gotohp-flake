@@ -13,7 +13,7 @@
 	outputs = inputs@{ flake-parts, ... }:
 		flake-parts.lib.mkFlake { inherit inputs; } {
 			systems = ["x86_64-linux"];
-			perSystem = { config, self', inputs', pkgs, system, ... }: {
+			perSystem = { config, self', inputs', pkgs, lib, system, ... }: {
 				packages = let pkgName = "gotohp"; in {
 					default = self'.packages.${pkgName};
 					${pkgName} = pkgs.stdenvNoCC.mkDerivation {
@@ -36,7 +36,7 @@
 						meta = {
 							description = "Unofficial Google Photos Desktop GUI Client";
 							homepage = "https://github.com/xob0t/"+pkgName;
-							license = pkgs.lib.licenses.mit;
+							license = lib.licenses.mit;
 							mainProgram = pkgName;
 						};
 					};
